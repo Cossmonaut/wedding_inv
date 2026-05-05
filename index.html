@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Андрей & Настя – Приглашение на свадьбу</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Floating emojis layer - symmetrical on both sides -->
+    <div class="emoji-layer" id="emojiLayer"></div>
+
+    <!-- Page 1: Invitation Overview -->
+    <section class="page page-1 active">
+        <div class="card">
+            <div class="doodle-container">
+                <img src="wedd_photo.png" alt="Hand drawn characters" class="main-doodle">
+                <img src="dino.png" alt="Dinosaur" class="dino" title="Любимые динозавры Насти">
+            </div>
+
+            <h2 class="header-text" id="title">Мы решили пожениться!</h2>
+
+            <p class="invite-intro" id="intro">приглашаем разделить с нами радость</p>
+
+            <div class="divider"></div>
+
+            <div class="guest-section">
+                <p class="guest-label">Кого приглашаем:</p>
+                <h1 class="guest-names" id="guest-list">...</h1>
+                <p class="sweet-message" id="sweetMessage">
+                    Пусть каждый момент будет наполнен любовью, смехом и теплом тех, кто рядом.
+                </p>
+            </div>
+
+            <button class="nav-btn" data-page="2" id="btnMore">Подробнее</button>
+        </div>
+    </section>
+
+    <!-- Page 2: Details - Two blocks -->
+    <section class="page page-2">
+        <div class="card">
+            <h2 class="header-text">Детали</h2>
+
+            <!-- Block 1: ЗАГС -->
+            <div class="event-block">
+                <div class="event-header">
+                    <span class="event-icon">💒</span>
+                    <h3 class="event-title">ЗАГС</h3>
+                    <p class="event-date-tag">Церемония</p>
+                </div>
+                <div class="event-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Дата:</span>
+                        <span class="detail-value" id="zagrs-date">—</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Время:</span>
+                        <span class="detail-value" id="zagrs-time">—</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Адрес:</span>
+                        <span class="detail-value" id="zagrs-place">—</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider dashed"><span>✂</span></div>
+
+            <!-- Block 2: Второй день -->
+            <div class="event-block">
+                <div class="event-header">
+                    <span class="event-icon">🎉</span>
+                    <h3 class="event-title">Празднование с друзьями</h3>
+                    <p class="event-date-tag">Второй день</p>
+                </div>
+                <div class="event-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Дата:</span>
+                        <span class="detail-value" id="friends-date">—</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Время:</span>
+                        <span class="detail-value" id="friends-time">—</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Адрес:</span>
+                        <span class="detail-value" id="friends-place">—</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rsvp-section">
+                <p id="rsvpText">Пожалуйста, подтвердите участие</p>
+                <p class="contacts" id="rsvpContact">—</p>
+            </div>
+
+            <button class="nav-btn" data-page="1" id="btnBack">Назад</button>
+        </div>
+    </section>
+
+    <script src="config.js"></script>
+    <script>
+        // Показать нужную страницу
+        function showPage(num) {
+            const p1 = document.querySelector('.page-1');
+            const p2 = document.querySelector('.page-2');
+            if (!p1 || !p2) return;
+            if (num === 1) {
+                p1.classList.add('active');
+                p2.classList.remove('active');
+            } else {
+                p2.classList.add('active');
+                p1.classList.remove('active');
+            }
+        }
+
+        // Обработчики кнопок
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('.nav-btn');
+            if (!btn) return;
+            const page = btn.getAttribute('data-page');
+            if (page === '1' || page === '2') {
+                e.preventDefault();
+                showPage(parseInt(page, 10));
+            }
+        });
+
+        // Плавающие эмодзи - симметрично по обеим сторонам
+        function createFloatingEmojis() {
+            const layer = document.getElementById('emojiLayer');
+            if (!layer) return;
+            const emojis = ['🦕','🌸','💐','✨','💫','🌙','⭐','💜','🪄','🎀','🍃','🦋','🌺','💝','🌿'];
+            
+            // Создаем эмодзи на левой и правой стороне симметрично
+            for (let i = 0; i < 10; i++) {
+                // Левая сторона (0-40%)
+                createEmoji(layer, emojis, Math.random() * 40, i * 1.5);
+                // Правая сторона (60-100%)
+                createEmoji(layer, emojis, 60 + Math.random() * 40, i * 1.5 + 0.7);
+            }
+        }
+
+        function createEmoji(layer, emojis, leftPercent, delayMultiplier) {
+            const el = document.createElement('div');
+            el.className = 'floating-emoji';
+            el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            el.style.left = leftPercent + '%';
+            el.style.animationDelay = (delayMultiplier * 2) + 's';
+            el.style.animationDuration = (20 + Math.random() * 10) + 's';
+            el.style.fontSize = (16 + Math.random() * 14) + 'px';
+            layer.appendChild(el);
+        }
+
+        // Заполнить данные из config.js
+        function fillFromConfig() {
+            const cfg = window.GUEST_DATA;
+            if (!cfg) return;
+
+            // Цвета
+            const root = document.documentElement;
+            if (root && cfg.colors) {
+                root.style.setProperty('--main-purple', cfg.colors.main || '#6B46C1');
+                root.style.setProperty('--accent-soft', cfg.colors.soft || '#F3E8FF');
+                root.style.setProperty('--accent-warm', cfg.colors.warm || '#F9A8D4');
+                root.style.setProperty('--dark-accent', cfg.colors.dark || '#4C1D95');
+            }
+
+            // Заголовок и интро
+            const titleEl = document.getElementById('title');
+            const introEl = document.getElementById('intro');
+            if (titleEl && cfg.title) titleEl.textContent = cfg.title;
+            if (introEl && cfg.intro) introEl.textContent = cfg.intro;
+
+            // Список гостей
+            const guestListEl = document.getElementById('guest-list');
+            if (guestListEl) {
+                const guests = Array.isArray(cfg.guests) ? cfg.guests.join(', ') : (cfg.guests || '...');
+                guestListEl.textContent = guests;
+            }
+
+            // Sweet message
+            const sweetMsgEl = document.getElementById('sweetMessage');
+            if (sweetMsgEl && cfg.sweetMessage) sweetMsgEl.textContent = cfg.sweetMessage;
+
+            // ЗАГС блок (пустые по умолчанию)
+            const zagrsDate = cfg.zagrs?.date || '—';
+            const zagrsTime = cfg.zagrs?.time || '—';
+            const zagrsPlace = cfg.zagrs?.place || '—';
+            document.getElementById('zagrs-date').textContent = zagrsDate;
+            document.getElementById('zagrs-time').textContent = zagrsTime;
+            document.getElementById('zagrs-place').textContent = zagrsPlace;
+
+            // Второй день блок (пустые по умолчанию)
+            const friendsDate = cfg.friends?.date || '—';
+            const friendsTime = cfg.friends?.time || '—';
+            const friendsPlace = cfg.friends?.place || '—';
+            document.getElementById('friends-date').textContent = friendsDate;
+            document.getElementById('friends-time').textContent = friendsTime;
+            document.getElementById('friends-place').textContent = friendsPlace;
+
+            // Кнопки
+            const btnMore = document.getElementById('btnMore');
+            const btnBack = document.getElementById('btnBack');
+            if (btnMore && cfg.buttons?.more) btnMore.textContent = cfg.buttons.more;
+            if (btnBack && cfg.buttons?.back) btnBack.textContent = cfg.buttons.back;
+
+            // RSVP
+            const rsvpText = document.getElementById('rsvpText');
+            const rsvpContact = document.getElementById('rsvpContact');
+            if (rsvpText && cfg.rsvp?.text) rsvpText.textContent = cfg.rsvp.text;
+            if (rsvpContact && cfg.rsvp?.contact) rsvpContact.textContent = cfg.rsvp.contact;
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingEmojis();
+            fillFromConfig();
+        });
+    </script>
+</body>
+</html>
