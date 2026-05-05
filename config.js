@@ -4,7 +4,7 @@ const GUEST_DATA = {
     // Заголовок на первой странице
     title: "Мы решили пожениться!",
     // Короткий текст под заголовком
-    intro: "приглашаем разделить с нами радость",
+    intro: "Приглашаем разделить с нами радость.",
     // Список приглашаемых гостей (массив) — будет показан на первой странице
     guests: ["Андрей", "Анастасия"],
     // Милое сообщение на первой странице
@@ -63,8 +63,17 @@ function applyConfig() {
     // Список гостей
     const guestListEl = document.getElementById('guest-list');
     if (guestListEl) {
-        const guests = Array.isArray(cfg.guests) ? cfg.guests.join(', ') : (cfg.guests || '...');
-        guestListEl.textContent = guests;
+        let guestText = cfg.guests || '...';
+        if (Array.isArray(cfg.guests)) {
+            if (cfg.guests.length === 1) {
+                guestText = cfg.guests[0];
+            } else if (cfg.guests.length === 2) {
+                guestText = cfg.guests.join(' и ');
+            } else {
+                guestText = cfg.guests.slice(0, -1).join(', ') + ' и ' + cfg.guests.slice(-1);
+            }
+        }
+        guestListEl.textContent = guestText;
     }
 
     // Sweet message
