@@ -1,4 +1,4 @@
-# Wedding Invitation – Андрей и Настя
+# Wedding Invitation
 
 A polished, professional two‑page wedding invitation template with smooth animated transitions and a purple‑themed palette. The design is fully configurable via `config.js`.
 
