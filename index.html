@@ -95,7 +95,48 @@
                 <p class="contacts" id="rsvpContact">—</p>
             </div>
 
-            <button class="nav-btn" data-page="1" id="btnBack">Назад</button>
+            <div class="button-group">
+                <button class="nav-btn" data-page="3" id="btnRSVP">Подтвердить участие</button>
+                <button class="nav-btn" data-page="1" id="btnBack">Назад</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 3: RSVP Confirmation -->
+    <section class="page page-3">
+        <div class="card">
+            <h2 class="header-text">Придете к нам на свадьбу?</h2>
+            
+            <div class="guest-section" style="margin: 32px 0;">
+                <p class="sweet-message" id="rsvpQuestion" style="font-size: 24px; margin: 0;">
+                    Мы будем очень рады видеть вас в этот важный день!
+                </p>
+            </div>
+
+            <!-- Link Display (shown when Yes is clicked) -->
+            <div id="confirmDisplay" style="display: none; margin: 24px 0;">
+                <div class="guest-section" style="background: linear-gradient(135deg, rgba(124, 95, 176, 0.1) 0%, rgba(248, 240, 252, 0.6) 100%);">
+                    <p class="guest-label" style="color: var(--main-purple); margin-bottom: 12px;">Ссылка на беседу</p>
+                    <div id="confirmLinkBox" style="background: white; padding: 16px; border-radius: 12px; margin: 12px 0; border: 1px solid rgba(124, 95, 176, 0.2);">
+                        <p class="sweet-message" id="confirmLinkText" style="word-break: break-all; font-size: 16px; margin: 0;"></p>
+                    </div>
+                    <button class="nav-btn" id="btnCopyLink" style="max-width: 100%; margin-top: 8px;">Скопировать ссылку</button>
+                </div>
+            </div>
+
+            <!-- Funny message display (shown when No is clicked) -->
+            <div id="funnyDisplay" style="display: none; margin: 24px 0;">
+                <div class="guest-section" style="background: linear-gradient(135deg, rgba(232, 196, 217, 0.3) 0%, rgba(248, 240, 252, 0.5) 100%);">
+                    <p class="sweet-message" id="funnyMessage" style="font-size: 20px; color: var(--accent-deep);"></p>
+                </div>
+            </div>
+
+            <div class="rsvp-button-group">
+                <button class="nav-btn" id="btnYes">Да, с радостью!</button>
+                <button class="nav-btn" id="btnNo">Нет, к сожалению</button>
+            </div>
+
+            <button class="nav-btn" data-page="2" id="btnBackRSVP" style="margin-top: 16px;">Назад</button>
         </div>
     </section>
 
@@ -103,28 +144,75 @@
     <script>
         // Показать нужную страницу
         function showPage(num) {
-            const p1 = document.querySelector('.page-1');
-            const p2 = document.querySelector('.page-2');
-            if (!p1 || !p2) return;
-            if (num === 1) {
-                p1.classList.add('active');
-                p2.classList.remove('active');
-            } else {
-                p2.classList.add('active');
-                p1.classList.remove('active');
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+            const targetPage = document.querySelector('.page-' + num);
+            if (targetPage) {
+                targetPage.classList.add('active');
             }
         }
 
-        // Обработчики кнопок
+        // Обработчики кнопок навигации
         document.addEventListener('click', function(e) {
             const btn = e.target.closest('.nav-btn');
             if (!btn) return;
             const page = btn.getAttribute('data-page');
-            if (page === '1' || page === '2') {
+            if (page === '1' || page === '2' || page === '3') {
                 e.preventDefault();
                 showPage(parseInt(page, 10));
             }
         });
+
+        // Обработчики RSVP кнопок
+        const btnYes = document.getElementById('btnYes');
+        const btnNo = document.getElementById('btnNo');
+        const confirmDisplay = document.getElementById('confirmDisplay');
+        const funnyDisplay = document.getElementById('funnyDisplay');
+        const confirmLinkText = document.getElementById('confirmLinkText');
+        const funnyMessage = document.getElementById('funnyMessage');
+        const btnCopyLink = document.getElementById('btnCopyLink');
+
+        if (btnYes) {
+            btnYes.addEventListener('click', function() {
+                const cfg = window.GUEST_DATA;
+                const link = cfg ? cfg.confirm_link : '#';
+                
+                confirmDisplay.style.display = 'block';
+                funnyDisplay.style.display = 'none';
+                
+                if (confirmLinkText) {
+                    confirmLinkText.textContent = link;
+                }
+            });
+        }
+
+        if (btnNo) {
+            btnNo.addEventListener('click', function() {
+                const cfg = window.GUEST_DATA;
+                const funnyMsg = cfg ? (cfg.funny_message || 'Ну ты даёшь! Будем скучать без тебя...') : 'Ну ты даёшь!';
+                
+                confirmDisplay.style.display = 'none';
+                funnyDisplay.style.display = 'block';
+                
+                if (funnyMessage) {
+                    funnyMessage.textContent = funnyMsg;
+                }
+            });
+        }
+
+        if (btnCopyLink) {
+            btnCopyLink.addEventListener('click', function() {
+                const cfg = window.GUEST_DATA;
+                const link = cfg ? cfg.confirm_link : '#';
+                navigator.clipboard.writeText(link).then(function() {
+                    const originalText = btnCopyLink.textContent;
+                    btnCopyLink.textContent = 'Скопировано!';
+                    setTimeout(function() {
+                        btnCopyLink.textContent = originalText;
+                    }, 2000);
+                });
+            });
+        }
 
         // Плавающие эмодзи - симметрично по обеим сторонам
         function createFloatingEmojis() {
@@ -160,9 +248,9 @@
             // Цвета
             const root = document.documentElement;
             if (root && cfg.colors) {
-                root.style.setProperty('--main-purple', cfg.colors.main || '#6B46C1');
-                root.style.setProperty('--accent-soft', cfg.colors.soft || '#F3E8FF');
-                root.style.setProperty('--accent-warm', cfg.colors.warm || '#F9A8D4');
+                root.style.setProperty('--main-purple', cfg.colors.main || '#7C5FB0');
+                root.style.setProperty('--accent-soft', cfg.colors.soft || '#F8F0FC');
+                root.style.setProperty('--accent-warm', cfg.colors.warm || '#E8C4D9');
                 root.style.setProperty('--dark-accent', cfg.colors.dark || '#4C1D95');
             }
 
@@ -192,7 +280,7 @@
             const sweetMsgEl = document.getElementById('sweetMessage');
             if (sweetMsgEl && cfg.sweetMessage) sweetMsgEl.textContent = cfg.sweetMessage;
 
-            // ЗАГС блок (пустые по умолчанию)
+            // ЗАГС блок
             const zagrsDate = cfg.zagrs?.date || '—';
             const zagrsTime = cfg.zagrs?.time || '—';
             const zagrsPlace = cfg.zagrs?.place || '—';
@@ -200,7 +288,7 @@
             document.getElementById('zagrs-time').textContent = zagrsTime;
             document.getElementById('zagrs-place').textContent = zagrsPlace;
 
-            // Второй день блок (пустые по умолчанию)
+            // Второй день блок
             const friendsDate = cfg.friends?.date || '—';
             const friendsTime = cfg.friends?.time || '—';
             const friendsPlace = cfg.friends?.place || '—';
@@ -211,8 +299,12 @@
             // Кнопки
             const btnMore = document.getElementById('btnMore');
             const btnBack = document.getElementById('btnBack');
+            const btnRSVP = document.getElementById('btnRSVP');
+            const btnBackRSVP = document.getElementById('btnBackRSVP');
             if (btnMore && cfg.buttons?.more) btnMore.textContent = cfg.buttons.more;
             if (btnBack && cfg.buttons?.back) btnBack.textContent = cfg.buttons.back;
+            if (btnRSVP) btnRSVP.textContent = 'Подтвердить участие';
+            if (btnBackRSVP && cfg.buttons?.back) btnBackRSVP.textContent = cfg.buttons.back;
 
             // RSVP
             const rsvpText = document.getElementById('rsvpText');
@@ -225,6 +317,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             createFloatingEmojis();
             fillFromConfig();
+            applyConfig();
         });
     </script>
 </body>

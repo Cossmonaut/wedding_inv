@@ -31,19 +31,92 @@ const GUEST_DATA = {
     // Тексты кнопок
     buttons: {
         more: "Подробнее",
-        back: "Назад"
+        back: "Назад",
+        yes: "Да, с радостью!",
+        no: "Нет, к сожалению"
     },
     // Тексты RSVP
     rsvp: {
         text: "Пожалуйста, подтвердите участие",
         contact: "—"
+    },
+    // Сообщение при отказе (funny_message)
+    funny_message: "Ну ты даёшь! Будем скучать без тебя... Хотя, может, и не будем? 😜",
+    // Ссылка для подтверждения участия (QR/ссылка)
+    confirm_link: "https://t.me/+SmJlsDJbk4I4MDQy",
+    // Данные гостей для персонализации
+    guest_data: {
+        "andrew_nastya": {
+            names: ["Андрей", "Анастасия"],
+            sweetMessage: "Приходите, дуры"
+        },
+        "alexey_anna": {
+            names: ["Алексей", "Анна"],
+            sweetMessage: "Очень ждем вас! Настолок не будет!"
+        },
+        "vasya_natasha": {
+            names: ["Василий", "Наталья"],
+            sweetMessage: "На свадьбу к нам - газ?"
+        },
+        "alexandr_o": {
+            names: ["Александр"],
+            sweetMessage: ""
+        },
+        "elizaveta": {
+            names: ["Елизавета"],
+            sweetMessage: "Ждем тебя, любимая Лизочка"
+        },
+        "mark_kristina": {
+            names: ["Марк", "Кристина"],
+            sweetMessage: "Очень ждем вас! "
+        },
+        "vladislav": {
+            names: ["Владислав"],
+            sweetMessage: ""
+        },
+        "dmitry": {
+            names: ["Дмитрий"],
+            sweetMessage: ""
+        },
+        "eugene": {
+            names: ["Евгений"],
+            sweetMessage: ""
+        },
+        "shultz_anf": {
+            names: ["Илья", "Анфиса"],
+            sweetMessage: ""
+        },
+        "ivan_marina": {
+            names: ["Иван", "Марина"],
+            sweetMessage: ""
+        },
+        "anatoly": {
+            names: ["Анатолий"],
+            sweetMessage: ""
+        }
     }
 };
+
+// Генерация уникальной ссылки для гостя
+function generateGuestLink(guestId) {
+    const baseUrl = window.location.origin + window.location.pathname;
+    return baseUrl + '?guest=' + encodeURIComponent(guestId);
+}
+
+// Получение ID гостя из URL
+function getGuestIdFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('guest');
+}
 
 // Применение конфигурации при загрузке страницы
 function applyConfig() {
     const cfg = GUEST_DATA;
     if (!cfg) return;
+
+    // Получаем ID гостя из URL
+    const guestId = getGuestIdFromUrl();
+    const guestInfo = guestId && cfg.guest_data[guestId] ? cfg.guest_data[guestId] : null;
 
     // Цвета
     const root = document.documentElement;
@@ -57,28 +130,50 @@ function applyConfig() {
     // Заголовок и интро
     const titleEl = document.getElementById('title');
     const introEl = document.getElementById('intro');
-    if (titleEl) titleEl.textContent = cfg.title || titleEl.textContent;
-    if (introEl) introEl.textContent = cfg.intro || introEl.textContent;
+    if (titleEl) titleEl.textContent = cfg.title;
+    if (introEl) introEl.textContent = cfg.intro;
 
-    // Список гостей
+    // Список гостей и sweet message (настраиваются под гостя, если есть в URL)
     const guestListEl = document.getElementById('guest-list');
-    if (guestListEl) {
-        let guestText = cfg.guests || '...';
-        if (Array.isArray(cfg.guests)) {
-            if (cfg.guests.length === 1) {
-                guestText = cfg.guests[0];
-            } else if (cfg.guests.length === 2) {
-                guestText = cfg.guests.join(' и ');
-            } else {
-                guestText = cfg.guests.slice(0, -1).join(', ') + ' и ' + cfg.guests.slice(-1);
-            }
-        }
-        guestListEl.textContent = guestText;
-    }
-
-    // Sweet message
     const sweetMsgEl = document.getElementById('sweetMessage');
-    if (sweetMsgEl && cfg.sweetMessage) sweetMsgEl.textContent = cfg.sweetMessage;
+    
+    if (guestInfo) {
+        // Персонализированные данные гостя
+        if (guestListEl) {
+            let guestText = guestInfo.names || cfg.guests;
+            if (Array.isArray(guestInfo.names)) {
+                if (guestInfo.names.length === 1) {
+                    guestText = guestInfo.names[0];
+                } else if (guestInfo.names.length === 2) {
+                    guestText = guestInfo.names.join(' и ');
+                } else {
+                    guestText = guestInfo.names.slice(0, -1).join(', ') + ' и ' + guestInfo.names.slice(-1);
+                }
+            }
+            guestListEl.textContent = guestText;
+        }
+        if (sweetMsgEl && guestInfo.sweetMessage) {
+            sweetMsgEl.textContent = guestInfo.sweetMessage;
+        }
+    } else {
+        // Общие данные по умолчанию
+        if (guestListEl) {
+            let guestText = cfg.guests || '...';
+            if (Array.isArray(cfg.guests)) {
+                if (cfg.guests.length === 1) {
+                    guestText = cfg.guests[0];
+                } else if (cfg.guests.length === 2) {
+                    guestText = cfg.guests.join(' и ');
+                } else {
+                    guestText = cfg.guests.slice(0, -1).join(', ') + ' и ' + cfg.guests.slice(-1);
+                }
+            }
+            guestListEl.textContent = guestText;
+        }
+        if (sweetMsgEl && cfg.sweetMessage) {
+            sweetMsgEl.textContent = cfg.sweetMessage;
+        }
+    }
 
     // ЗАГС блок
     const zagrsDateEl = document.getElementById('zagrs-date');
@@ -102,11 +197,17 @@ function applyConfig() {
     if (btnMore && cfg.buttons?.more) btnMore.textContent = cfg.buttons.more;
     if (btnBack && cfg.buttons?.back) btnBack.textContent = cfg.buttons.back;
 
-    // RSVP
+    // RSVP текст
     const rsvpText = document.getElementById('rsvpText');
     const rsvpContact = document.getElementById('rsvpContact');
     if (rsvpText && cfg.rsvp?.text) rsvpText.textContent = cfg.rsvp.text;
     if (rsvpContact && cfg.rsvp?.contact) rsvpContact.textContent = cfg.rsvp.contact;
+
+    // Обновляем текст кнопок RSVP на странице 3
+    const btnYes = document.getElementById('btnYes');
+    const btnNo = document.getElementById('btnNo');
+    if (btnYes && cfg.buttons?.yes) btnYes.textContent = cfg.buttons.yes;
+    if (btnNo && cfg.buttons?.no) btnNo.textContent = cfg.buttons.no;
 }
 
 // Запуск при загрузке

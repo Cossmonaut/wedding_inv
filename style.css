@@ -342,6 +342,86 @@ body {
     font-style: italic;
 }
 
+/* Button groups - fixed alignment */
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.button-group .nav-btn {
+    flex: 1;
+    min-width: 140px;
+    max-width: none;
+    margin-top: 0;
+}
+
+/* RSVP Page 3 specific styles */
+#confirmDisplay .guest-section {
+    text-align: center;
+}
+
+#confirmDisplay .guest-label {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+#confirmLinkBox {
+    display: block;
+}
+
+#confirmLinkText {
+    font-size: 14px !important;
+    color: var(--accent-deep) !important;
+    background: rgba(124, 95, 176, 0.05);
+    padding: 12px !important;
+    border-radius: 8px;
+    margin: 8px 0 !important;
+    word-break: break-all;
+}
+
+#btnCopyLink {
+    max-width: 100% !important;
+    margin-top: 12px !important;
+    padding: 12px 24px !important;
+}
+
+#funnyDisplay .guest-section {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(232, 196, 217, 0.3) 0%, rgba(248, 240, 252, 0.5) 100%) !important;
+}
+
+#funnyMessage {
+    font-size: 20px !important;
+    color: var(--accent-deep) !important;
+    font-style: italic;
+}
+
+/* RSVP button group - properly aligned */
+.rsvp-button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.rsvp-button-group .nav-btn {
+    flex: 1;
+    min-width: 160px;
+    max-width: 240px;
+    margin-top: 0;
+}
+
+#btnYes {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A) !important;
+}
+
+#btnNo {
+    background: linear-gradient(135deg, #f44336, #ef5350) !important;
+}
+
 /* Floating emojis - symmetrical on both sides */
 .floating-emoji {
     position: absolute;
@@ -385,7 +465,6 @@ body {
 /* Mobile adjustments */
 @media (max-width: 480px) {
     .card { padding: 36px 24px; border-radius: 20px; }
-    .nav-btn { max-width: 100%; padding: 14px 24px; }
     .dino { width: 34px; bottom: -6px; right: -4px; }
     .main-doodle { max-width: 160px; }
     .event-block { padding: 20px; }
@@ -393,4 +472,47 @@ body {
     .detail-row { flex-direction: column; align-items: flex-start; gap: 4px; }
     .detail-value { align-self: stretch; text-align: left; }
     .guest-section { padding: 20px 16px; }
+    
+    /* Button groups mobile */
+    .button-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .button-group .nav-btn {
+        min-width: auto;
+        width: 100%;
+        max-width: none;
+    }
+    
+    /* RSVP page mobile */
+    .rsvp-button-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .rsvp-button-group .nav-btn {
+        min-width: auto;
+        width: 100%;
+        max-width: none;
+    }
+    
+    #confirmLinkText {
+        font-size: 13px !important;
+    }
+    
+    #funnyMessage {
+        font-size: 18px !important;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 481px) and (max-width: 768px) {
+    .card { padding: 40px 32px; }
+    .button-group {
+        flex-direction: row;
+    }
+    .rsvp-button-group {
+        flex-direction: row;
+    }
 }
