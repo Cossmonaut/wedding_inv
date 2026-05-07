@@ -446,6 +446,8 @@ body {
     animation: driftUp 25s linear infinite;
     z-index: 0;
     text-shadow: 0 2px 8px rgba(124, 95, 176, 0.2);
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 /* Extra small screens */
@@ -465,7 +467,7 @@ body {
 
 @keyframes driftUp {
     0% {
-        transform: translateY(100vh) rotate(0deg);
+        transform: translate3d(0, 100%, 0) rotate(0deg);
         opacity: 0;
     }
     10% {
@@ -475,7 +477,7 @@ body {
         opacity: 0.4;
     }
     100% {
-        transform: translateY(-100vh) rotate(720deg);
+        transform: translate3d(0, -100%, 0) rotate(360deg);
         opacity: 0;
     }
 }
