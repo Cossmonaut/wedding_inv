@@ -502,7 +502,7 @@ body {
     /* Font sizes for mobile */
     .header-text { font-size: clamp(42px, 12vw, 60px); }
     .invite-intro { font-size: clamp(18px, 3.5vw, 26px); }
-    .guest-names { font-size: clamp(26px, 6vw, 36px); }
+    .guest-names { font-family: 'ladiosa', serif; font-size: clamp(26px, 6vw, 36px); }
     .sweet-message { font-size: clamp(16px, 3vw, 20px); }
     .event-title { font-size: 24px; }
     .detail-label { font-size: 16px; }

@@ -41,7 +41,7 @@ const GUEST_DATA = {
         contact: "—"
     },
     // Сообщение при отказе (funny_message)
-    funny_message: "Ну ты даёшь! Будем скучать без тебя... Хотя, может, и не будем? 😜",
+    funny_message: "Лохи",
     // Ссылка для подтверждения участия (QR/ссылка)
     confirm_link: "https://t.me/+SmJlsDJbk4I4MDQy",
     // Данные гостей для персонализации
