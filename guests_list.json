@@ -1,50 +1,50 @@
 {
     "andrew_nastya": {
         "names": ["Андрей", "Анастасия"],
-        "text": "Приходите, дуры"
+        "sweet-message": "Приходите, дуры"
     },
     "alexey_anna":{
         "names": ["Алексей", "Анна"],
-        "text":"Очень ждем вас! Настолок не будет!"
+        "sweet-message":"Очень ждем вас! Настолок не будет!"
     },
     "vasya_natasha":{
         "names": ["Василий", "Наталья"],
-        "text": "На свадьбу к нам - газ?"
+        "sweet-message": "На свадьбу к нам - газ?"
     },
     "alexandr_o":{
         "names": ["Александр"],
-        "text": ""
+        "sweet-message": "Братан, там надо будет подъехать пораньше где-то в 15:30 с декором помочь."
     },
     "elizaveta":{
         "names": ["Елизавета"],
-        "text": "Ждем тебя, любимая Лизочка"
+        "sweet-message": "Ждем тебя, любимая Лизочка"
     },
     "mark_kristina":{
         "names": ["Марк", "Кристина"],
-        "text": "Очень ждем вас! "
+        "sweet-message": "Очень ждем вас!"
     },
     "vladislav":{
         "names": ["Владислав"],
-        "text": ""
+        "sweet-message": ""
     },
     "dmitry":{
         "names": ["Дмитрий"],
-        "text": ""
+        "sweet-message": ""
     },
     "eugene":{
         "names": ["Евгений"],
-        "text": ""
+        "sweet-message": ""
     },
     "shultz_anf":{
         "names": ["Илья", "Анфиса"],
-        "text": ""
+        "sweet-message": ""
     },
     "ivan_marina":{
         "names":["Иван", "Марина"],
-        "text":""
+        "sweet-message":""
     },
     "anatoly":{
         "names": ["Анатолий"],
-        "text": ""
+        "sweet-message": ""
     }
 }

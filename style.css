@@ -28,26 +28,29 @@ body {
     background: linear-gradient(145deg, var(--bg) 0%, #f5eff9 50%, var(--accent-soft) 100%);
     display: flex;
     justify-content: center;
-    padding: 20px;
+    padding: 12px;
     font-family: 'Montserrat', sans-serif;
     color: var(--pencil);
     margin: 0;
     min-height: 100vh;
     align-items: center;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .card {
     width: 100%;
     max-width: 720px;
     background: var(--card);
-    padding: 48px 40px;
-    border-radius: 28px;
+    padding: 32px 24px;
+    border-radius: 24px;
     box-shadow: 0 20px 60px rgba(124, 95, 176, 0.12), 0 8px 24px rgba(124, 95, 176, 0.08);
     text-align: center;
     color: var(--pencil);
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(168, 136, 199, 0.18);
+    box-sizing: border-box;
 }
 
 .card::before {
@@ -114,8 +117,10 @@ body {
 }
 
 .nav-btn {
-    margin-top: 32px;
-    padding: 14px 32px;
+    margin-top: 24px;
+    padding: 16px 24px;
+    min-height: 48px;
+    min-width: 48px;
     background: linear-gradient(135deg, var(--accent-deep), var(--accent-mid));
     color: #fff;
     border: none;
@@ -130,7 +135,8 @@ body {
     position: relative;
     overflow: hidden;
     width: 100%;
-    max-width: 240px;
+    max-width: 280px;
+    box-sizing: border-box;
 }
 
 .nav-btn::after {
@@ -156,13 +162,15 @@ body {
     height: 180px;
 }
 
-/* Guest section on page 1 */
+/* Guest section on page 1 - base styles (mobile enhancements in media queries) */
 .guest-section {
     margin: 28px 0;
     padding: 24px 20px;
     background: linear-gradient(135deg, var(--accent-soft) 0%, rgba(248, 240, 252, 0.6) 100%);
     border-radius: 20px;
     border: 1px solid rgba(168, 136, 199, 0.12);
+    box-sizing: border-box;
+    word-wrap: break-word;
 }
 
 .guest-label {
@@ -224,7 +232,6 @@ body {
     width: 100%;
     max-width: 720px;
     margin: 0 auto;
-    padding: 20px;
     opacity: 0;
     transform: translateX(40px) scale(0.95);
     transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
@@ -233,7 +240,8 @@ body {
     right: 0;
     top: 0;
     bottom: 0;
-    padding: 48px 40px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .page.active {
@@ -301,6 +309,8 @@ body {
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid rgba(168, 136, 199, 0.1);
+    flex-wrap: wrap;
+    gap: 4px;
 }
 
 .detail-row:last-child {
@@ -312,6 +322,7 @@ body {
     font-size: 18px;
     font-weight: 500;
     color: var(--muted);
+    flex-shrink: 0;
 }
 
 .detail-value {
@@ -320,6 +331,9 @@ body {
     color: var(--pencil);
     font-weight: 500;
     font-style: italic;
+    word-break: break-word;
+    text-align: right;
+    min-width: 0;
 }
 
 .rsvp-section {
@@ -409,8 +423,8 @@ body {
 
 .rsvp-button-group .nav-btn {
     flex: 1;
-    min-width: 160px;
-    max-width: 240px;
+    min-width: 140px;
+    max-width: none;
     margin-top: 0;
 }
 
@@ -432,6 +446,21 @@ body {
     animation: driftUp 25s linear infinite;
     z-index: 0;
     text-shadow: 0 2px 8px rgba(124, 95, 176, 0.2);
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+    .header-text { font-size: 36px; }
+    .invite-intro { font-size: 18px; }
+    .guest-names { font-size: 24px; }
+    .sweet-message { font-size: 16px; }
+    .card { padding: 24px 16px; border-radius: 16px; }
+    .event-block { padding: 16px; }
+    .event-title { font-size: 20px; }
+    .detail-label, .detail-value { font-size: 15px; }
+    .nav-btn { padding: 12px 16px; font-size: 14px; min-height: 44px; }
+    .page { padding: 12px; }
+    body { padding: 8px; }
 }
 
 @keyframes driftUp {
@@ -464,55 +493,93 @@ body {
 
 /* Mobile adjustments */
 @media (max-width: 480px) {
-    .card { padding: 36px 24px; border-radius: 20px; }
+    .card { padding: 28px 20px; border-radius: 20px; }
     .dino { width: 34px; bottom: -6px; right: -4px; }
     .main-doodle { max-width: 160px; }
-    .event-block { padding: 20px; }
+    .event-block { padding: 18px; }
     .event-header { flex-direction: column; align-items: flex-start; gap: 8px; }
     .detail-row { flex-direction: column; align-items: flex-start; gap: 4px; }
-    .detail-value { align-self: stretch; text-align: left; }
-    .guest-section { padding: 20px 16px; }
+    .detail-value { align-self: stretch; text-align: left; word-break: break-word; }
+    .guest-section { padding: 18px 14px; }
+    
+    /* Font sizes for mobile */
+    .header-text { font-size: clamp(42px, 12vw, 60px); }
+    .invite-intro { font-size: clamp(18px, 3.5vw, 26px); }
+    .guest-names { font-size: clamp(26px, 6vw, 36px); }
+    .sweet-message { font-size: clamp(16px, 3vw, 20px); }
+    .event-title { font-size: 24px; }
+    .detail-label { font-size: 16px; }
+    .detail-value { font-size: 18px; }
     
     /* Button groups mobile */
     .button-group {
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
     }
     
     .button-group .nav-btn {
         min-width: auto;
         width: 100%;
         max-width: none;
+        margin-top: 0;
     }
     
     /* RSVP page mobile */
     .rsvp-button-group {
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
     }
     
     .rsvp-button-group .nav-btn {
         min-width: auto;
         width: 100%;
         max-width: none;
+        margin-top: 0;
     }
     
     #confirmLinkText {
         font-size: 13px !important;
+        word-break: break-all;
     }
     
     #funnyMessage {
         font-size: 18px !important;
     }
+    
+    .nav-btn {
+        padding: 14px 20px;
+        font-size: 15px;
+        min-height: 46px;
+    }
+    
+    .page {
+        padding: 16px;
+    }
+    
+    body {
+        padding: 10px;
+    }
 }
 
 /* Tablet adjustments */
 @media (min-width: 481px) and (max-width: 768px) {
-    .card { padding: 40px 32px; }
+    .card { padding: 36px 28px; }
     .button-group {
         flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .button-group .nav-btn {
+        flex: 1;
+        min-width: 140px;
     }
     .rsvp-button-group {
         flex-direction: row;
+        flex-wrap: wrap;
     }
+    .rsvp-button-group .nav-btn {
+        flex: 1;
+        min-width: 140px;
+    }
+    .event-header { flex-wrap: wrap; }
+    .detail-row { flex-wrap: wrap; }
 }
