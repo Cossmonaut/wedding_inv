@@ -15,134 +15,137 @@
     <!-- Floating emojis layer - symmetrical on both sides -->
     <div class="emoji-layer" id="emojiLayer"></div>
 
-    <!-- Page 1: Invitation Overview -->
-    <section class="page page-1 active">
-        <div class="card">
-            <div class="doodle-container">
-                <img src="wedd_photo_2.png" alt="Hand drawn characters" class="main-doodle">
-                <img src="dino.png" alt="Dinosaur" class="dino" title="Любимые динозавры Насти">
-            </div>
-
-            <h2 class="header-text" id="title">Мы решили пожениться!</h2>
-
-            <p class="invite-intro" id="intro">приглашаем разделить с нами радость</p>
-
-            <div class="divider"></div>
-
-            <div class="guest-section">
-                <p class="guest-label">Приглашаем:</p>
-                <h1 class="guest-names" id="guest-list">...</h1>
-                <p class="sweet-message" id="sweetMessage">
-                    Пусть каждый момент будет наполнен любовью, смехом и теплом тех, кто рядом.
-                </p>
-            </div>
-
-            <button class="nav-btn" data-page="2" id="btnMore">Подробнее</button>
-        </div>
-    </section>
-
-    <!-- Page 2: Details - Two blocks -->
-    <section class="page page-2">
-        <div class="card">
-            <h2 class="header-text">Детали</h2>
-
-            <!-- Block 1: ЗАГС -->
-            <div class="event-block">
-                <div class="event-header">
-                    <span class="event-icon">💒</span>
-                    <h3 class="event-title">ЗАГС</h3>
-                    <p class="event-date-tag">Церемония</p>
+    <!-- Page container for proper mobile layout -->
+    <div class="page-container">
+        <!-- Page 1: Invitation Overview -->
+        <section class="page page-1 active">
+            <div class="card">
+                <div class="doodle-container">
+                    <img src="wedd_photo_2.png" alt="Hand drawn characters" class="main-doodle">
+                    <img src="dino.png" alt="Dinosaur" class="dino" title="Любимые динозавры Насти">
                 </div>
-                <div class="event-details">
-                    <div class="detail-row">
-                        <span class="detail-label">Дата:</span>
-                        <span class="detail-value" id="zagrs-date">—</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Время:</span>
-                        <span class="detail-value" id="zagrs-time">—</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Адрес:</span>
-                        <span class="detail-value" id="zagrs-place">—</span>
-                    </div>
+
+                <h2 class="header-text" id="title">Мы решили пожениться!</h2>
+
+                <p class="invite-intro" id="intro">приглашаем разделить с нами радость</p>
+
+                <div class="divider"></div>
+
+                <div class="guest-section">
+                    <p class="guest-label">Приглашаем:</p>
+                    <h1 class="guest-names" id="guest-list">...</h1>
+                    <p class="sweet-message" id="sweetMessage">
+                        Пусть каждый момент будет наполнен любовью, смехом и теплом тех, кто рядом.
+                    </p>
                 </div>
+
+                <button class="nav-btn" data-page="2" id="btnMore">Подробнее</button>
             </div>
+        </section>
 
-            <div class="divider dashed"><span>✂</span></div>
+        <!-- Page 2: Details - Two blocks -->
+        <section class="page page-2">
+            <div class="card">
+                <h2 class="header-text">Детали</h2>
 
-            <!-- Block 2: Второй день -->
-            <div class="event-block">
-                <div class="event-header">
-                    <span class="event-icon">🎉</span>
-                    <h3 class="event-title">Празднование с друзьями</h3>
-                    <p class="event-date-tag">Второй день</p>
-                </div>
-                <div class="event-details">
-                    <div class="detail-row">
-                        <span class="detail-label">Дата:</span>
-                        <span class="detail-value" id="friends-date">—</span>
+                <!-- Block 1: ЗАГС -->
+                <div class="event-block">
+                    <div class="event-header">
+                        <span class="event-icon">💒</span>
+                        <h3 class="event-title">ЗАГС</h3>
+                        <p class="event-date-tag">Церемония</p>
                     </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Время:</span>
-                        <span class="detail-value" id="friends-time">—</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Адрес:</span>
-                        <span class="detail-value" id="friends-place">—</span>
+                    <div class="event-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Дата:</span>
+                            <span class="detail-value" id="zagrs-date">—</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Время:</span>
+                            <span class="detail-value" id="zagrs-time">—</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Адрес:</span>
+                            <span class="detail-value" id="zagrs-place">—</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="rsvp-section">
-                <p id="rsvpText">Пожалуйста, подтвердите участие</p>
-                <p class="contacts" id="rsvpContact">—</p>
-            </div>
+                <div class="divider dashed"><span>✂</span></div>
 
-            <div class="button-group">
-                <button class="nav-btn" data-page="3" id="btnRSVP">Подтвердить участие</button>
-                <button class="nav-btn" data-page="1" id="btnBack">Назад</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Page 3: RSVP Confirmation -->
-    <section class="page page-3">
-        <div class="card">
-            <h2 class="header-text">Придете к нам на свадьбу?</h2>
-            
-            <div class="guest-section" style="margin: 32px 0;">
-                <p class="sweet-message" id="rsvpQuestion" style="font-size: 24px; margin: 0;">
-                    Мы будем очень рады видеть вас в этот день!
-                </p>
-            </div>
-
-            <!-- Link Display (shown when Yes is clicked) -->
-            <div id="confirmDisplay" style="display: none; margin: 24px 0;">
-                <div class="guest-section" style="background: linear-gradient(135deg, rgba(124, 95, 176, 0.1) 0%, rgba(248, 240, 252, 0.6) 100%);">
-                    <p class="guest-label" style="color: var(--main-purple); margin-bottom: 12px;">Ссылка на беседу</p>
-                    <div id="confirmLinkBox" style="background: white; padding: 16px; border-radius: 12px; margin: 12px 0; border: 1px solid rgba(124, 95, 176, 0.2);">
-                        <p class="sweet-message" id="confirmLinkText" style="word-break: break-all; font-size: 16px; margin: 0;"></p>
+                <!-- Block 2: Второй день -->
+                <div class="event-block">
+                    <div class="event-header">
+                        <span class="event-icon">🎉</span>
+                        <h3 class="event-title">Празднование с друзьями</h3>
+                        <p class="event-date-tag">Второй день</p>
                     </div>
-                    <button class="nav-btn" id="btnCopyLink" style="max-width: 100%; margin-top: 8px;">Скопировать ссылку</button>
+                    <div class="event-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Дата:</span>
+                            <span class="detail-value" id="friends-date">—</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Время:</span>
+                            <span class="detail-value" id="friends-time">—</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Адрес:</span>
+                            <span class="detail-value" id="friends-place">—</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rsvp-section">
+                    <p id="rsvpText">Пожалуйста, подтвердите участие</p>
+                    <p class="contacts" id="rsvpContact">—</p>
+                </div>
+
+                <div class="button-group">
+                    <button class="nav-btn" data-page="3" id="btnRSVP">Подтвердить участие</button>
+                    <button class="nav-btn" data-page="1" id="btnBack">Назад</button>
                 </div>
             </div>
+        </section>
 
-            <!-- Funny message display (shown when No is clicked) -->
-            <div id="funnyDisplay" style="display: none; margin: 24px 0;">
-                <div class="guest-section" style="background: linear-gradient(135deg, rgba(232, 196, 217, 0.3) 0%, rgba(248, 240, 252, 0.5) 100%);">
-                    <p class="sweet-message" id="funnyMessage" style="font-size: 20px; color: var(--accent-deep);"></p>
+        <!-- Page 3: RSVP Confirmation -->
+        <section class="page page-3">
+            <div class="card">
+                <h2 class="header-text">Придете к нам на свадьбу?</h2>
+                
+                <div class="guest-section" style="margin: 32px 0;">
+                    <p class="sweet-message" id="rsvpQuestion" style="font-size: 24px; margin: 0;">
+                        Мы будем очень рады видеть вас в этот день!
+                    </p>
                 </div>
-            </div>
 
-            <div class="rsvp-button-group">
-                <button class="nav-btn" id="btnYes">Да, с радостью!</button>
-                <button class="nav-btn" id="btnNo">Нет, к сожалению</button>
-            </div>
+                <!-- Link Display (shown when Yes is clicked) -->
+                <div id="confirmDisplay" style="display: none; margin: 24px 0;">
+                    <div class="guest-section" style="background: linear-gradient(135deg, rgba(124, 95, 176, 0.1) 0%, rgba(248, 240, 252, 0.6) 100%);">
+                        <p class="guest-label" style="color: var(--main-purple); margin-bottom: 12px;">Ссылка на беседу</p>
+                        <div id="confirmLinkBox" style="background: white; padding: 16px; border-radius: 12px; margin: 12px 0; border: 1px solid rgba(124, 95, 176, 0.2);">
+                            <p class="sweet-message" id="confirmLinkText" style="word-break: break-all; font-size: 16px; margin: 0;"></p>
+                        </div>
+                        <button class="nav-btn" id="btnCopyLink" style="max-width: 100%; margin-top: 8px;">Скопировать ссылку</button>
+                    </div>
+                </div>
 
-            <button class="nav-btn" data-page="2" id="btnBackRSVP" style="margin-top: 16px;">Назад</button>
-        </div>
-    </section>
+                <!-- Funny message display (shown when No is clicked) -->
+                <div id="funnyDisplay" style="display: none; margin: 24px 0;">
+                    <div class="guest-section" style="background: linear-gradient(135deg, rgba(232, 196, 217, 0.3) 0%, rgba(248, 240, 252, 0.5) 100%);">
+                        <p class="sweet-message" id="funnyMessage" style="font-size: 20px; color: var(--accent-deep);"></p>
+                    </div>
+                </div>
+
+                <div class="rsvp-button-group">
+                    <button class="nav-btn" id="btnYes">Да, с радостью!</button>
+                    <button class="nav-btn" id="btnNo">Нет, к сожалению</button>
+                </div>
+
+                <button class="nav-btn" data-page="2" id="btnBackRSVP" style="margin-top: 16px;">Назад</button>
+            </div>
+        </section>
+    </div>
 
     <script src="config.js"></script>
     <script>
@@ -154,6 +157,10 @@
             if (targetPage) {
                 targetPage.classList.add('active');
             }
+            // Scroll to top on page change for mobile
+            window.scrollTo(0, 0);
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
         }
 
         // Обработчики кнопок навигации
