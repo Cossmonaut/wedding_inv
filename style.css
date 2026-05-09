@@ -14,6 +14,8 @@
     font-display: swap;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@600;700&display=swap');
+
 :root {
     --pencil: #3d2b5e;
     --bg: #fdfaff;
@@ -192,7 +194,7 @@ body {
 }
 
 .guest-names {
-    font-family: 'ladiosa', serif;
+    font-family: 'Dancing Script', 'Playfair Display', serif;
     font-size: clamp(32px, 5vw, 44px);
     color: var(--accent-deep);
     margin: 12px 0;
