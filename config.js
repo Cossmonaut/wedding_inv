@@ -97,6 +97,9 @@ const GUEST_DATA = {
     }
 };
 
+// Expose GUEST_DATA to global window object for access from index.html
+window.GUEST_DATA = GUEST_DATA;
+
 // Генерация уникальной ссылки для гостя
 function generateGuestLink(guestId) {
     const baseUrl = window.location.origin + window.location.pathname;
