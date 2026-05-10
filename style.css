@@ -441,19 +441,6 @@ body {
     background: linear-gradient(135deg, #f44336, #ef5350) !important;
 }
 
-/* Floating emojis - symmetrical on both sides */
-.floating-emoji {
-    position: absolute;
-    font-size: 20px;
-    pointer-events: none;
-    user-select: none;
-    opacity: 0.4;
-    animation: driftUp 25s linear infinite;
-    z-index: 0;
-    text-shadow: 0 2px 8px rgba(124, 95, 176, 0.2);
-    will-change: transform;
-    transform: translateZ(0);
-}
 
 /* Extra small screens */
 @media (max-width: 360px) {
@@ -470,22 +457,6 @@ body {
     body { padding: 8px; }
 }
 
-@keyframes driftUp {
-    0% {
-        transform: translate3d(0, 100%, 0) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.4;
-    }
-    90% {
-        opacity: 0.4;
-    }
-    100% {
-        transform: translate3d(0, -100%, 0) rotate(360deg);
-        opacity: 0;
-    }
-}
 
 .emoji-layer {
     position: fixed;
@@ -589,4 +560,36 @@ body {
     }
     .event-header { flex-wrap: wrap; }
     .detail-row { flex-wrap: wrap; }
+}
+
+/* Fixed animation for floating emojis */
+@keyframes driftUp {
+    0% {
+        transform: translate3d(0, 100vh, 0) rotate(0deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 0.6;
+    }
+    95% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate3d(0, -100vh, 0) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Optimized floating emoji styles */
+.floating-emoji {
+    position: absolute;
+    font-size: 20px;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    animation: driftUp 20s linear infinite;
+    z-index: 0;
+    text-shadow: 0 2px 8px rgba(124, 95, 176, 0.2);
+    will-change: transform, opacity;
+    transform: translateZ(0);
 }
