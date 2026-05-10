@@ -72,7 +72,7 @@ const GUEST_DATA = {
         },
         "vladislav": {
             names: ["Владислав"],
-            sweetMessage: ""
+            sweetMessage: "Братан, приходи, гульнем. Только мелкого не будет."
         },
         "dmitry": {
             names: ["Дмитрий"],
