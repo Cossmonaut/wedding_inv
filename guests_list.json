@@ -21,30 +21,30 @@
     },
     "mark_kristina":{
         "names": ["Марк", "Кристина"],
-        "sweet-message": "Очень ждем вас!"
+        "sweet-message": "Очень ждем вас, семейство пАджеров!"
     },
     "vladislav":{
         "names": ["Владислав"],
-        "sweet-message": ""
+        "sweet-message": "Братан, приходи, гульнем"
     },
     "dmitry":{
         "names": ["Дмитрий"],
-        "sweet-message": ""
+        "sweet-message": "Димас, ждем тебя в этот день"
     },
     "eugene":{
         "names": ["Евгений"],
-        "sweet-message": ""
+        "sweet-message": "Год назад ты сказал, что мы обязаны пожениться, теперь приходи"
     },
     "shultz_anf":{
         "names": ["Илья", "Анфиса"],
-        "sweet-message": ""
+        "sweet-message": "Какая любовь без химии и системы правосудия. Ждем вас!"
     },
     "ivan_marina":{
         "names":["Иван", "Марина"],
-        "sweet-message":""
+        "sweet-message":"Страха нет?"
     },
     "anatoly":{
         "names": ["Анатолий"],
-        "sweet-message": ""
+        "sweet-message": "Очень ждем лучшего гитариста Иркутска!"
     }
 }
