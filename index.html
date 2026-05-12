@@ -124,7 +124,9 @@
                     <div class="guest-section" style="background: linear-gradient(135deg, rgba(124, 95, 176, 0.1) 0%, rgba(248, 240, 252, 0.6) 100%);">
                         <p class="guest-label" style="color: var(--main-purple); margin-bottom: 12px;">Ссылка на беседу</p>
                         <div id="confirmLinkBox" style="background: white; padding: 16px; border-radius: 12px; margin: 12px 0; border: 1px solid rgba(124, 95, 176, 0.2);">
-                            <p class="sweet-message" id="confirmLinkText" style="word-break: break-all; font-size: 16px; margin: 0;"></p>
+                            <a href="#" id="confirmLink" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+                                <p class="sweet-message" id="confirmLinkText" style="word-break: break-all; font-size: 16px; margin: 0;"></p>
+                            </a>
                         </div>
                         <button class="nav-btn" id="btnCopyLink" style="max-width: 100%; margin-top: 8px;">Скопировать ссылку</button>
                     </div>
@@ -193,6 +195,9 @@
                 
                 if (confirmLinkText) {
                     confirmLinkText.textContent = link;
+                }
+                if (confirmLink) {
+                    confirmLink.href = link;
                 }
             });
         }

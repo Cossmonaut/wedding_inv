@@ -76,23 +76,27 @@ const GUEST_DATA = {
         },
         "dmitry": {
             names: ["Дмитрий"],
-            sweetMessage: ""
+            sweetMessage: "Лысик пысик, ждем на свадьбе <3"
         },
         "eugene": {
             names: ["Евгений"],
-            sweetMessage: ""
+            sweetMessage: "Год назад ты говорил, что нам надо пожениться, теперь ждем"
         },
         "shultz_anf": {
             names: ["Илья", "Анфиса"],
-            sweetMessage: ""
+            sweetMessage: "Приходите, без вас будет не хватать химии!"
         },
         "ivan_marina": {
             names: ["Иван", "Марина"],
-            sweetMessage: ""
+            sweetMessage: "Страха нет?"
         },
         "anatoly": {
             names: ["Анатолий"],
-            sweetMessage: ""
+            sweetMessage: "Ждем лучшего гитариста Иркутска!"
+        },
+        "darya": {
+            names: ["Дарья"],
+            sweetMessage: "Дашенька, ждем на свадьбе!"
         }
     }
 };
